@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navegation"
+    app:startDestination="@id/home2">
+
+    <fragment
+        android:id="@+id/notas"
+        android:name="com.example.appclima.UI.home.Notas"
+        android:label="Notas" >
+        <action
+            android:id="@+id/action_notas_to_detailsNotas"
+            app:destination="@id/detailsNotas" />
+    </fragment>
+    <fragment
+        android:id="@+id/home2"
+        android:name="com.example.appclima.UI.home.Home"
+        android:label="Home" />
+    <fragment
+        android:id="@+id/login"
+        android:name="com.example.appclima.UI.Lognin.Login"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_login_to_sign"
+            app:destination="@id/sign" />
+        <action
+            android:id="@+id/action_login_to_notas"
+            app:destination="@id/notas" />
+    </fragment>
+    <fragment
+        android:id="@+id/sign"
+        android:name="com.example.appclima.UI.Lognin.Sign"
+        android:label="Sign" />
+    <fragment
+        android:id="@+id/detailsNotas"
+        android:name="com.example.appclima.UI.home.DetailsNotas"
+        android:label="fragment_details_notas"
+        tools:layout="@layout/fragment_details_notas" />
+</navigation>
