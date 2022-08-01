@@ -12,6 +12,9 @@
         <action
             android:id="@+id/action_notas_to_detailsNotas"
             app:destination="@id/detailsNotas" />
+        <action
+            android:id="@+id/action_notas_to_addNotas"
+            app:destination="@id/addNotas" />
     </fragment>
     <fragment
         android:id="@+id/home2"
@@ -37,5 +40,24 @@
         android:id="@+id/detailsNotas"
         android:name="com.example.appclima.UI.home.DetailsNotas"
         android:label="fragment_details_notas"
-        tools:layout="@layout/fragment_details_notas" />
+        tools:layout="@layout/fragment_details_notas" >
+        <argument
+            android:name="id"
+            app:argType="integer" />
+        <argument
+            android:name="title"
+            app:argType="string" />
+        <argument
+            android:name="text"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/addNotas"
+        android:name="com.example.appclima.UI.home.AddNotas"
+        android:label="fragment_producto_add"
+        tools:layout="@layout/fragment_producto_add" >
+        <action
+            android:id="@+id/action_addNotas_to_notas"
+            app:destination="@id/notas" />
+    </fragment>
 </navigation>

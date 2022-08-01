@@ -1,11 +1,11 @@
-package com.example.appclima.repository
+package com.example.appclima.presentatation
 
 import androidx.lifecycle.LiveData
 import com.example.appclima.model.NotasEntity
+import com.example.appclima.utils.getStatus
 
-interface ClimaRepository {
-
-    //trae el listado de notas
+interface NotaRepository {
+    //trae el listao de notas
     suspend fun getNotas(): List<NotasEntity>
 
     //guarda una nota

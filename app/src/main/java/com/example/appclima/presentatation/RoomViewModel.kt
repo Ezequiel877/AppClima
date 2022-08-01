@@ -1,27 +1,54 @@
 package com.example.appclima.presentatation
 
-import android.app.Application
-import androidx.lifecycle.*
-import com.example.appclima.model.Notas
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.liveData
 import com.example.appclima.model.NotasEntity
-import com.example.appclima.model.local.AppDataBase
-import com.example.appclima.repository.NotasRepository
+import com.example.appclima.repository.ClimaRepository
 import com.example.appclima.utils.getStatus
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 
-class RoomViewModel(application: Application):AndroidViewModel(application) {
+class RoomViewModel(private val clima:ClimaRepository):ViewModel() {
 
-    val usedao: LiveData<List<Notas>>?=null
-    private var repository:NotasRepository?=null
-init {
-    val usedao=AppDataBase.getDataBase(application).climadao()
-    repository= NotasRepository(usedao)
-}
+    fun save(notas: NotasEntity) = liveData(Dispatchers.IO) {
+        emit(getStatus.Loading())
+        try {
+            emit(getStatus.Succes(clima.saveNotas(notas)))
+        } catch (e: Exception) {
+            emit(getStatus.Failure(e))
+        }
+    }
 
-    fun insertNotas(notas: NotasEntity){
-        viewModelScope.launch(Dispatchers.IO) {
-        repository!!.saveNotasMemo(notas)
+    fun getMemos() = liveData(Dispatchers.IO) {
+        emit(getStatus.Loading())
+        try {
+            emit(getStatus.Succes(clima.getNotas()))
+        } catch (e: Exception) {
+            emit(getStatus.Failure(e))
+        }
+    }
+
+    fun delete(id:Int) = liveData(Dispatchers.IO) {
+        emit(getStatus.Loading())
+        try {
+            emit(getStatus.Succes(clima.delete(id)))
+        } catch (e: Exception) {
+            emit(getStatus.Failure(e))
+        }
+    }
+    fun update(id: Int,title:String, text:String) = liveData(Dispatchers.IO) {
+        emit(getStatus.Loading())
+        try {
+            emit(getStatus.Succes(clima.update(id, title, text)))
+        } catch (e: Exception) {
+            emit(getStatus.Failure(e))
+        }
+    }
+
+
+    class RoomFactory(private val repo: ClimaRepository) : ViewModelProvider.Factory {
+        override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+            return modelClass.getConstructor(ClimaRepository::class.java).newInstance(repo)
         }
     }
 }

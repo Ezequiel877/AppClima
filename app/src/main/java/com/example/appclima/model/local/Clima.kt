@@ -39,5 +39,5 @@ data class Notas(var id :Int,var title :String, var text:String)
 data class NotasEntity(
     @PrimaryKey(autoGenerate = true)
     val id:Int,
-    val title: String?,
+    val title: String,
     val text:String)

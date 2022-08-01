@@ -12,7 +12,7 @@ import com.example.appclima.databinding.ItemNotaBinding
 import com.example.appclima.model.NotasEntity
 
 class NotasCardAdapter(private var context: Context,
-                       private var listaClientes: List<NotasEntity>
+                       private var listaClientes: List<NotasEntity>, private val listener:OnModelClick
 ) :
     RecyclerView.Adapter<NotasCardAdapter.ViewHolder>() {
 
@@ -26,10 +26,12 @@ class NotasCardAdapter(private var context: Context,
         val post=ViewHolder(view)
         post.binding.root
             .setOnClickListener {
-            val positon = post.adapterPosition.takeIf {
-                it != DiffUtil.DiffResult.NO_POSITION
+                val positon = post.adapterPosition.takeIf {
+                    it != DiffUtil.DiffResult.NO_POSITION
+
+                } ?:return@setOnClickListener
+                listener.onmodelClick(listaClientes[positon])
             }
-        }
         return post
     }
 
@@ -40,8 +42,9 @@ class NotasCardAdapter(private var context: Context,
         holder.binding.TITLE.text = product.text
         holder.binding.text.text = product.title
         holder.binding.linearLayout.setOnClickListener {
-
+            listener.onmodelClick(product)
         }
+
     }
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {

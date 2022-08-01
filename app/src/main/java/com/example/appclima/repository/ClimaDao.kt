@@ -11,10 +11,12 @@ interface ClimaDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
      fun saveNotas(notas: NotasEntity)
 
-    @Delete
-    fun delete(notas: NotasEntity)
-    @Update
-    fun update(notas: NotasEntity)
+    @Query("DELETE FROM memos WHERE id=:notas")
+    suspend fun delete(notas: Int)
+
+
+    @Query("UPDATE memos SET title=:title, text=:text WHERE id=:id ")
+    suspend fun update(id: Int, title: String, text:String)
 
 
 }
