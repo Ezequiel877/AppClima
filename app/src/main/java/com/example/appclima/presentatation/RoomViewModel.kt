@@ -2,13 +2,11 @@ package com.example.appclima.presentatation
 
 import androidx.lifecycle.*
 import com.example.appclima.model.NotasEntity
-import com.example.appclima.model.local.LocaDataSource
-import com.example.appclima.repository.ClimaRepository
+import com.example.appclima.repository.NotaRepository
 import com.example.appclima.utils.getStatus
 import kotlinx.coroutines.Dispatchers
-import java.net.IDN
 
-class RoomViewModel(private val clima:ClimaRepository):ViewModel() {
+class RoomViewModel(private val clima:NotaRepository):ViewModel() {
 
     fun save(notas: NotasEntity) = liveData(Dispatchers.IO) {
         emit(getStatus.Loading())
@@ -46,9 +44,9 @@ class RoomViewModel(private val clima:ClimaRepository):ViewModel() {
     }
 
 
-    class RoomFactory(private val repo: ClimaRepository) : ViewModelProvider.Factory {
+    class RoomFactory(private val repo: NotaRepository) : ViewModelProvider.Factory {
         override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-            return modelClass.getConstructor(ClimaRepository::class.java).newInstance(repo)
+            return modelClass.getConstructor(NotaRepository::class.java).newInstance(repo)
         }
 }
 }

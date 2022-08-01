@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import com.example.appclima.model.NotasEntity
 import com.example.appclima.utils.getStatus
 
-interface ClimaRepository {
+interface NotaRepository {
 
     //trae el listado de notas
     suspend fun getNotas(): List<NotasEntity>

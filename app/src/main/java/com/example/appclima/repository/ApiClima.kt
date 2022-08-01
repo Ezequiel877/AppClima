@@ -1,4 +1,4 @@
-package com.example.appclima.presentatation
+package com.example.appclima.repository
 
 import com.example.appclima.model.Main
 import com.example.appclima.model.WeatherResponse

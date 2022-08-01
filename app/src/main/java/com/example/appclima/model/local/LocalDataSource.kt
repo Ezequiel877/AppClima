@@ -1,10 +1,11 @@
-package com.example.appclima.repository
+package com.example.appclima.model.local
 
 import com.example.appclima.model.NotasEntity
+import com.example.appclima.repository.NotasDao
 
 /*implementacion de los metodos de persistencia */
 
-class NotasRepository(private val dao: ClimaDao) {
+class LocalDataSource(private val dao: NotasDao) {
 
 
     suspend fun saveNotasMemo(notas: NotasEntity) {

@@ -1,11 +1,8 @@
 package com.example.appclima.UI.home
 
 import android.os.Bundle
-import android.util.Log
-import android.view.LayoutInflater
 import androidx.fragment.app.Fragment
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
@@ -14,12 +11,9 @@ import androidx.navigation.fragment.navArgs
 import com.example.appclima.R
 import com.example.appclima.databinding.FragmentDetailsNotasBinding
 import com.example.appclima.model.local.AppDataBase
-import com.example.appclima.model.local.LocaDataSource
+import com.example.appclima.model.local.LocaDataImpl
 import com.example.appclima.presentatation.RoomViewModel
-import com.example.appclima.presentatation.hide
-import com.example.appclima.presentatation.show
-import com.example.appclima.repository.NotasRepository
-import com.example.appclima.utils.adapters.NotasCardAdapter
+import com.example.appclima.model.local.LocalDataSource
 import com.example.appclima.utils.getStatus
 
 
@@ -29,7 +23,7 @@ class DetailsNotas : Fragment(R.layout.fragment_details_notas) {
     private val args by navArgs<DetailsNotasArgs>()
     private val roomview: RoomViewModel by activityViewModels<RoomViewModel> {
         RoomViewModel.RoomFactory(
-            LocaDataSource(NotasRepository(AppDataBase.getDataBase(requireContext()).climadao()))
+            LocaDataImpl(LocalDataSource(AppDataBase.getDataBase(requireContext()).climadao()))
         )
     }
 

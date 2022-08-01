@@ -1,7 +1,6 @@
 package com.example.appclima.UI.home
 
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
@@ -16,11 +15,11 @@ import com.example.appclima.utils.adapters.NotasCardAdapter
 import com.example.appclima.databinding.FragmentNotasBinding
 import com.example.appclima.model.NotasEntity
 import com.example.appclima.model.local.AppDataBase
-import com.example.appclima.model.local.LocaDataSource
+import com.example.appclima.model.local.LocaDataImpl
 import com.example.appclima.presentatation.RoomViewModel
 import com.example.appclima.presentatation.hide
 import com.example.appclima.presentatation.show
-import com.example.appclima.repository.NotasRepository
+import com.example.appclima.model.local.LocalDataSource
 import com.example.appclima.utils.getStatus
 import com.google.firebase.auth.FirebaseAuth
 
@@ -31,7 +30,7 @@ class Notas : Fragment(R.layout.fragment_notas), NotasCardAdapter.OnModelClick {
     var notasmemos = listOf<NotasEntity>()
      private val roomview: RoomViewModel by activityViewModels<RoomViewModel> {
         RoomViewModel.RoomFactory(
-            LocaDataSource(NotasRepository(AppDataBase.getDataBase(requireContext()).climadao()))
+            LocaDataImpl(LocalDataSource(AppDataBase.getDataBase(requireContext()).climadao()))
         )
     }
 
