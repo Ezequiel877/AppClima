@@ -5,20 +5,8 @@
     android:id="@+id/fragment_conteirner"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginTop="100dp"
     tools:context=".UI.home.Home">
-
-    <androidx.appcompat.widget.SearchView
-        android:id="@+id/searche_clima"
-        android:layout_width="0dp"
-        android:background="@color/white"
-        android:layout_height="wrap_content"
-        android:contentDescription="TODO"
-        app:layout_constraintBottom_toTopOf="@id/frameLayout"
-        app:flow_verticalBias="0"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:fitsSystemWindows="true"
-        tools:ignore="ContentDescription,HardcodedText" />
 
     <FrameLayout
         android:id="@+id/frameLayout"
@@ -78,9 +66,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:textColor="@color/white"
         android:textSize="25sp"
         android:textStyle="bold"
+        android:textColor="@color/letra"
+        android:drawablePadding="8dp"
         app:layout_constraintBottom_toTopOf="@+id/cardView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -96,8 +85,6 @@
         android:drawablePadding="8dp"
         android:gravity="center"
         android:text="activa las notificaciones"
-        android:textColor="@color/white"
-        app:drawableTint="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/cardView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/cardView"
@@ -111,8 +98,6 @@
         android:drawablePadding="8dp"
         android:gravity="center"
         android:text="agregar a favoritos"
-        android:textColor="@color/white"
-        app:drawableTint="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/cardView"
         app:layout_constraintTop_toTopOf="@+id/cardView"
@@ -126,8 +111,6 @@
         android:drawablePadding="8dp"
         android:gravity="center"
         android:text="description"
-        android:textColor="@color/white"
-        app:drawableTint="@color/white"
         app:layout_constraintStart_toStartOf="@id/humedad"
         app:layout_constraintTop_toBottomOf="@+id/humedad"
         tools:ignore="MissingConstraints" />

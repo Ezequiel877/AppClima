@@ -8,6 +8,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.Toolbar;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
@@ -42,6 +43,7 @@ public class Login extends Fragment {
     TextInputEditText password;
     TextInputEditText email;
     FirebaseApp appfirebase;
+    CoordinatorLayout coordinatorLayout;
     FirebaseAuth auth;
     SharedPreferences mpref;
 
@@ -50,7 +52,6 @@ public class Login extends Fragment {
         // Required empty public constructor
     }
 
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,7 +59,6 @@ public class Login extends Fragment {
         appfirebase = FirebaseApp.initializeApp(getContext());
 
         auth = FirebaseAuth.getInstance();
-
     }
 
 
@@ -70,8 +70,8 @@ public class Login extends Fragment {
         login_button = vista.findViewById(R.id.button_login);
         gotoRegister = vista.findViewById(R.id.gotoRegister);
         email = vista.findViewById(R.id.name_login);
+        coordinatorLayout=vista.findViewById(R.id.fragment);
         password = vista.findViewById(R.id.login_email);
-
         login_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -104,8 +104,7 @@ public class Login extends Fragment {
                             getActivity().getSupportFragmentManager().beginTransaction().addToBackStack(null);
 
                         } else {
-                                mostrarDialog();
-                            Toast.makeText(getContext(), "el email o la contraseña es incorrecta", Toast.LENGTH_SHORT).show();
+                                mostrarDialog(v);
                         }
                     }
 
@@ -115,7 +114,7 @@ public class Login extends Fragment {
 
     }
 
-    protected void mostrarDialog() {
+    protected void mostrarDialog(View v) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle("ERROR DE AUTENTIFICACION");
         builder.setMessage("tu email o contraseña son incorrectas o si no tien una cuenta registrate").
@@ -129,12 +128,13 @@ public class Login extends Fragment {
                             e.printStackTrace();
                         }
                     }
-                }).setNegativeButton("cerrar", new DialogInterface.OnClickListener() {
+                }).setNegativeButton("ir a registrarme", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Toast.makeText(getContext(), "HOLSA", Toast.LENGTH_SHORT).show();
-
+                        Navigation.findNavController(v).navigate(R.id.home2);
+                        getActivity().getSupportFragmentManager().beginTransaction().addToBackStack(null);
                     }
-                });
+                }).show();
     }
+
 }

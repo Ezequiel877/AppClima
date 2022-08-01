@@ -13,7 +13,7 @@ import retrofit2.http.Query
 
 interface ApiClima {
 
-    @GET("data/3.0/onecall?")
+    @GET("data/3.0/onecall?&units=metric")
     fun getClima(@Query("lat")lat:String, @Query("lon")long:String, @Query("appid")appikey:String):Call<WeatherResponse>
 
 

@@ -223,9 +223,9 @@ class Home : Fragment(R.layout.fragment_home), SearchView.OnQueryTextListener {
                       val amanecer=datos!!.sunrise
                       val temperatura_min=datos!!.temp_min
                       val humidity=datos!!.pressure
-                      binding.temperatura.setText("temperatura en kelvin:$temperatura")
-                      binding.descripcion.setText("$amanecer")
-                      binding.humedad.setText("$humidity")
+                      binding.temperatura.setText("temperatura:$temperatura")
+                      binding.descripcion.setText("Amanecer: ${it.description}")
+                      binding.humedad.setText("humedad : ${datos.pressure}%")
                       binding.visivilida.setText("temperatura minima en kelvin:$temperatura_min")
                       }
 

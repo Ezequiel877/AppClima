@@ -4,9 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_margin="10dp"
+    android:id="@+id/mainactivity"
+    android:background="@color/white"
     android:layout_gravity="center"
     tools:context=".MainActivity">
-
+    <include
+        android:id="@+id/app_bar_main"
+        layout="@layout/app_bar_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp"/>
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragment_Container"
         android:name="androidx.navigation.fragment.NavHostFragment"

@@ -100,7 +100,7 @@ class Notas : Fragment(R.layout.fragment_notas), NotasCardAdapter.OnModelClick {
     }
 
     override fun onmodelClick(model: NotasEntity) {
-        val navegacion=NotasDirections.actionNotasToDetailsNotas(model.id, model.text, model.title )
+        val navegacion=NotasDirections.actionNotasToDetailsNotas(model.id,model.title ,model.text )
         findNavController().navigate(navegacion)
     }
 

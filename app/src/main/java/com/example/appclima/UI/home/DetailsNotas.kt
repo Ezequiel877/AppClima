@@ -31,8 +31,8 @@ class DetailsNotas : Fragment(R.layout.fragment_details_notas) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentDetailsNotasBinding.bind(view)
 
-        binding.descripcion.setText(args.title)
-        binding.titlememo.setText(args.text)
+        binding.descripcion.setText(args.text)
+        binding.title.setText(args.title)
 
         binding.eliminar.setOnClickListener {
             roomview.delete(args.id).observe(viewLifecycleOwner, Observer {
@@ -64,7 +64,7 @@ class DetailsNotas : Fragment(R.layout.fragment_details_notas) {
         }
 
         binding.actualizar.setOnClickListener {
-            roomview.update(args.id, binding.descripcion.text.toString(), binding.titlememo.text.toString()).observe(viewLifecycleOwner, Observer {
+            roomview.update(args.id, binding.title.text.toString(),binding.descripcion.text.toString()).observe(viewLifecycleOwner, Observer {
                 when (it) {
                     is getStatus.Loading -> {
 

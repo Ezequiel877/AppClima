@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navegation"
-    app:startDestination="@id/home2">
+    app:startDestination="@id/login">
 
     <fragment
         android:id="@+id/notas"
@@ -29,8 +29,8 @@
             android:id="@+id/action_login_to_sign"
             app:destination="@id/sign" />
         <action
-            android:id="@+id/action_login_to_notas"
-            app:destination="@id/notas" />
+            android:id="@+id/action_login_to_home2"
+            app:destination="@id/home2" />
     </fragment>
     <fragment
         android:id="@+id/sign"
