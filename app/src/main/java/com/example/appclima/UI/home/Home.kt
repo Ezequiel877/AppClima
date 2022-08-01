@@ -58,7 +58,7 @@ class Home : Fragment(R.layout.fragment_home), SearchView.OnQueryTextListener {
             var mLastLocation: Location = locationResult.lastLocation!!
             lat = mLastLocation.latitude.toString()
             lon = mLastLocation.longitude.toString()
-            getclima(lat, lon)
+
 
 
         }
@@ -160,7 +160,7 @@ class Home : Fragment(R.layout.fragment_home), SearchView.OnQueryTextListener {
                        * */
                         lat = location.latitude.toString()
                         lon = location.longitude.toString()
-                        getclima(lat, lon)
+
 
 
                     }
@@ -218,11 +218,11 @@ class Home : Fragment(R.layout.fragment_home), SearchView.OnQueryTextListener {
                       val jsoninstallments = response.body()
                       val datos=jsoninstallments!!.main!!.weather.forEach {
                           it.main
-                      val datos=jsoninstallments!!.main
+                      val datos= jsoninstallments.main
                       val temperatura=datos!!.tem.toInt()
-                      val amanecer=datos!!.sunrise
-                      val temperatura_min=datos!!.temp_min
-                      val humidity=datos!!.pressure
+                      val amanecer= datos.sunrise
+                      val temperatura_min= datos.temp_min
+                      val humidity= datos.pressure
                       binding.temperatura.setText("temperatura en kelvin:$temperatura")
                       binding.descripcion.setText("$amanecer")
                       binding.humedad.setText("$humidity")

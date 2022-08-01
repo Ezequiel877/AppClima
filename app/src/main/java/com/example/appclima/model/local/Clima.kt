@@ -1,13 +1,10 @@
 package com.example.appclima.model
 
-import android.os.Parcel
 import android.os.Parcelable
-import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import androidx.versionedparcelable.ParcelField
-import androidx.versionedparcelable.VersionedParcelize
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
 class WeatherResponse {
 
@@ -35,9 +32,11 @@ class Sys {
 }
 data class Weather(@SerializedName("id")val id:String="",@SerializedName("main")val main:String,@SerializedName("description") val description:String="",@SerializedName("icon") val icon:String="")
 data class Notas(var id :Int,var title :String, var text:String)
+
+@Parcelize
 @Entity(tableName = "memos")
 data class NotasEntity(
     @PrimaryKey(autoGenerate = true)
     val id:Int,
-    val title: String?,
-    val text:String)
+    val title: String,
+    val text:String) : Parcelable

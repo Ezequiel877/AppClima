@@ -4,6 +4,7 @@ plugins {
     id 'com.google.gms.google-services'
     id 'androidx.navigation.safeargs.kotlin'
     id 'kotlin-kapt'
+    id 'kotlin-parcelize'
 
 }
 
@@ -52,9 +53,16 @@ dependencies {
     implementation('com.google.code.gson:gson:2.8.5')
 
     //room
+
     implementation("androidx.room:room-runtime:2.4.2")
     annotationProcessor("androidx.room:room-compiler:2.4.2")
+
+    // To use Kotlin annotation processing tool (kapt)
     kapt("androidx.room:room-compiler:2.4.2")
+    // To use Kotlin Symbolic Processing (KSP)
+
+    // optional - Kotlin Extensions and Coroutines support for Room
+    implementation("androidx.room:room-ktx:2.4.2")
 
 
     implementation 'com.github.bumptech.glide:glide:4.11.0'

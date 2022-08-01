@@ -15,6 +15,7 @@ buildscript {
         // in the individual module build.gradle files
     }
 }
+
 plugins {
 
     id 'com.android.application' version '7.2.1' apply false

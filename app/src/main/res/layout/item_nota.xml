@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="6sp"
-    android:orientation="horizontal"
+    android:orientation="vertical"
     android:theme="@style/Theme.MaterialComponents.Light"
 
     xmlns:tools="http://schemas.android.com/tools"
@@ -11,34 +11,23 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
         <TextView
-            android:id="@+id/TITLE"
-            android:layout_width="170dp"
-            android:layout_height="120dp"
-            android:textAlignment="center"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/preciotexto"
-            app:layout_constraintStart_toEndOf="@+id/preciotexto"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="MissingConstraints" />
-
-        <TextView
             android:id="@+id/text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
             android:ems="3"
             android:textAlignment="center"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/bntMas"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="MissingConstraints" />
-        <ImageButton
-            android:id="@+id/bntDelete"
-            android:layout_width="35dp"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_baseline_delete_24"
-            android:layout_marginStart="32dp"
-            tools:ignore="MissingConstraints">
-
-        </ImageButton>
+        <TextView
+            android:id="@+id/TITLE"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/preciotexto"
+            app:layout_constraintStart_toEndOf="@+id/preciotexto"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints" />
 
 </LinearLayout>

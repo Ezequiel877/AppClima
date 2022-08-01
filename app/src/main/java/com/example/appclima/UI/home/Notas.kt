@@ -8,24 +8,32 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.example.appclima.R
 import com.example.appclima.utils.adapters.NotasCardAdapter
 import com.example.appclima.databinding.FragmentNotasBinding
 import com.example.appclima.model.NotasEntity
 import com.example.appclima.model.local.AppDataBase
+import com.example.appclima.model.local.LocaDataSource
+import com.example.appclima.presentatation.RoomViewModel
+import com.example.appclima.presentatation.hide
+import com.example.appclima.presentatation.show
+import com.example.appclima.repository.NotasRepository
+import com.example.appclima.utils.getStatus
 import com.google.firebase.auth.FirebaseAuth
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 
 
 class Notas : Fragment(R.layout.fragment_notas), NotasCardAdapter.OnModelClick {
 
     private lateinit var binding: FragmentNotasBinding
-    var selectProducto = listOf<NotasEntity>()
-    private lateinit var adapter: NotasCardAdapter
-    private lateinit var viewmodel: AppDataBase
+    var notasmemos = listOf<NotasEntity>()
+     private val roomview: RoomViewModel by activityViewModels<RoomViewModel> {
+        RoomViewModel.RoomFactory(
+            LocaDataSource(NotasRepository(AppDataBase.getDataBase(requireContext()).climadao()))
+        )
+    }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,23 +44,33 @@ class Notas : Fragment(R.layout.fragment_notas), NotasCardAdapter.OnModelClick {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentNotasBinding.bind(view)
-        viewmodel=AppDataBase.getDataBase(requireContext())
-        GlobalScope.launch(Dispatchers.IO) {
-            selectProducto=viewmodel.climadao().getNotas()
-            binding.let {
-                adapter = NotasCardAdapter(requireContext(), selectProducto)
-                binding.recyclerView.adapter = adapter
-            }
-        }
-        Log.d("TAGdatosint", "onViewCreated: $selectProducto")
+        roomview.getMemos().observe(viewLifecycleOwner, Observer {
+            when (it) {
+                is getStatus.Loading -> {
+                    binding.deltaRelative.show()
 
+                }
+                is getStatus.Succes -> {
+                    binding.deltaRelative.hide()
+                    binding.recyclerView.adapter=NotasCardAdapter(requireContext(),it.data,this )
+
+                }
+                is getStatus.Failure -> {
+                    binding.deltaRelative.hide()
+                    Toast.makeText(requireContext(),
+                        "ocurrio un error:${it.exception}",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+
+            }
+        })
 
         binding.flotingNextBoton.setOnClickListener {
             AddNotas().show(
                 requireActivity().supportFragmentManager,
                 AddNotas::class.java.simpleName
             )
-            Toast.makeText(context, "estas navegando", Toast.LENGTH_SHORT).show()
         }
 
     }
@@ -74,12 +92,13 @@ class Notas : Fragment(R.layout.fragment_notas), NotasCardAdapter.OnModelClick {
         firebase.signOut()
         findNavController().navigate(R.id.login)
      requireActivity().supportFragmentManager.beginTransaction().addToBackStack(null)
-        Toast.makeText(requireContext(), "estas navegando", Toast.LENGTH_SHORT).show()
+        Toast.makeText(requireContext(), "Cerraste secion", Toast.LENGTH_SHORT).show()
 
     }
 
     override fun onmodelClick(model: NotasEntity) {
-
+        val navegacion=NotasDirections.actionNotasToDetailsNotas(model.id, model.text, model.title )
+        findNavController().navigate(navegacion)
     }
 
 }
