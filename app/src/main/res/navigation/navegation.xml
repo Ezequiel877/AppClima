@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/notas"
-        android:name="com.example.appclima.UI.home.Notas"
+        android:name="com.example.appclima.UI.home.notas.Notas"
         android:label="Notas" >
         <action
             android:id="@+id/action_notas_to_detailsNotas"
@@ -38,7 +38,7 @@
         android:label="Sign" />
     <fragment
         android:id="@+id/detailsNotas"
-        android:name="com.example.appclima.UI.home.DetailsNotas"
+        android:name="com.example.appclima.UI.home.notas.DetailsNotas"
         android:label="fragment_details_notas"
         tools:layout="@layout/fragment_details_notas" >
         <argument
@@ -53,7 +53,7 @@
     </fragment>
     <fragment
         android:id="@+id/addNotas"
-        android:name="com.example.appclima.UI.home.AddNotas"
+        android:name="com.example.appclima.UI.home.notas.AddNotas"
         android:label="fragment_producto_add"
         tools:layout="@layout/fragment_producto_add" >
         <action

@@ -1,4 +1,4 @@
-package com.example.appclima.UI.home
+package com.example.appclima.UI.home.notas
 
 import android.app.AlertDialog
 import android.app.Dialog
@@ -18,9 +18,6 @@ import com.example.appclima.model.local.LocaDataImpl
 import com.example.appclima.model.local.LocalDataSource
 import com.example.appclima.presentatation.RoomViewModel
 import com.example.appclima.utils.getStatus
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 
 
 class AddNotas : DialogFragment(), DialogInterface.OnShowListener {
@@ -75,10 +72,7 @@ class AddNotas : DialogFragment(), DialogInterface.OnShowListener {
                         is getStatus.Succes -> {
                             val navegacion=AddNotasDirections.actionAddNotasToNotas()
                             findNavController().navigate(navegacion)
-                            Toast.makeText(requireContext(),
-                                "se elimino ${it}",
-                                Toast.LENGTH_SHORT
-                            ).show()
+
                         }
                         is getStatus.Failure -> {
 
@@ -90,6 +84,7 @@ class AddNotas : DialogFragment(), DialogInterface.OnShowListener {
 
                     }
                 })
+
                 Toast.makeText(requireContext(), "nota agregada", Toast.LENGTH_SHORT).show()
             }
 

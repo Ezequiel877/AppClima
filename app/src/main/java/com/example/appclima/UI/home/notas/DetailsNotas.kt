@@ -1,4 +1,4 @@
-package com.example.appclima.UI.home
+package com.example.appclima.UI.home.notas
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

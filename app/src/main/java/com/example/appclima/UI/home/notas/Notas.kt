@@ -1,4 +1,4 @@
-package com.example.appclima.UI.home
+package com.example.appclima.UI.home.notas
 
 import android.os.Bundle
 import android.util.Log
@@ -23,9 +23,6 @@ import com.example.appclima.presentatation.hide
 import com.example.appclima.presentatation.show
 import com.example.appclima.utils.getStatus
 import com.google.firebase.auth.FirebaseAuth
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 
 
 class Notas : Fragment(R.layout.fragment_notas), NotasCardAdapter.OnModelClick {

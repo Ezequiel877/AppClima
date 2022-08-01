@@ -5,7 +5,6 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.location.Geocoder
 import android.location.Location
 import android.location.LocationManager
 import android.os.Bundle
@@ -21,9 +20,8 @@ import androidx.navigation.fragment.findNavController
 import com.example.appclima.R
 import com.example.appclima.utils.constantes.constantes
 import com.example.appclima.databinding.FragmentHomeBinding
-import com.example.appclima.model.Main
 import com.example.appclima.model.WeatherResponse
-import com.example.appclima.presentatation.ApiClima
+import com.example.appclima.repository.ApiClima
 import com.example.appclima.model.remote.RetrofitClient
 import com.google.android.gms.location.*
 import com.google.android.gms.maps.GoogleMap

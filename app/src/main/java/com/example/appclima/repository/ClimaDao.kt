@@ -3,6 +3,8 @@ package com.example.appclima.repository
 import androidx.room.*
 import com.example.appclima.model.NotasEntity
 
+
+
 @Dao
 interface ClimaDao {
     @Query("SELECT * FROM memos")
